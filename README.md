@@ -1,6 +1,12 @@
 # Chat Api with Slim Framework
 
-This application includes APIs where users can create groups, join groups, and send messages to groups.
+This application includes APIs where users can create groups, join groups, and send messages to groups.<br><br>
+
+This project is a backend application written in PHP language and uses the Slim Framework.
+<br>
+
+Created a middleware called TokenMiddleware to handle access to certain APIs that require a token. <br>
+The routes.php file in the app directory routes incoming requests from the client to the respective controllers. The controller then calls the necessary model and returns a response as JSON format.
 
 <hr><br>
 
@@ -33,7 +39,7 @@ We are using SQLite as our database. We have four tables:
 - users => This table store the users data.
 
 * - username: Name of the user.
-* - token: To authenticate a user, an automatically generated identifier is used. It is required to create a group, join a group, send messages to a group, view messages in a group, and view group members.
+* - token: To authenticate a user, an automatically generated. It is required to create a group, join a group, send messages to a group, view messages in a group, and view group members. You need to add this to the header like bearer token.
     <br>
 
 - chat_groups => This table strore the created groups.

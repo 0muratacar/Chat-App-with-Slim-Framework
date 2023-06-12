@@ -27,46 +27,6 @@ return function (App $app) {
         return $response;
     });
 
-    $app->group('/docs', function (RouteCollectorProxy $group) {
-
-        $group->get('[/]', function (Request $request, Response $response) {
-            $swaggerUiContent = file_get_contents(__DIR__ . '/swagger/dist/index.html');
-            $response->getBody()->write($swaggerUiContent);
-            return $response;
-        });
-
-        $group->get('/swagger-ui.css', function (Request $request, Response $response) {
-            $content = file_get_contents(__DIR__ . '/swagger/dist/swagger-ui.css');
-            $response->getBody()->write($content);
-            return $response->withHeader('Content-Type', 'text/css');
-        });
-
-        $group->get('/index.css', function (Request $request, Response $response) {
-            $content = file_get_contents(__DIR__ . '/swagger/dist/index.css');
-            $response->getBody()->write($content);
-            return $response->withHeader('Content-Type', 'text/css');
-        });
-
-        $group->get('/swagger-ui-bundle.js', function (Request $request, Response $response) {
-            $content = file_get_contents(__DIR__ . '/swagger/dist/swagger-ui-bundle.js');
-            $response->getBody()->write($content);
-            return $response->withHeader('Content-Type', 'application/javascript');
-        });
-
-        $group->get('/swagger-ui-standalone-preset.js', function (Request $request, Response $response) {
-            $content = file_get_contents(__DIR__ . '/swagger/dist/swagger-ui-standalone-preset.js');
-            $response->getBody()->write($content);
-            return $response->withHeader('Content-Type', 'application/javascript');
-        });
-
-        $group->get('/swagger-initializer.js', function (Request $request, Response $response) {
-            $content = file_get_contents(__DIR__ . '/swagger/dist/swagger-initializer.js');
-            $response->getBody()->write($content);
-            return $response->withHeader('Content-Type', 'application/javascript');
-        });
-    });
-
-
     $app->get('/', function (Request $request, Response $response) {
         $response->getBody()->write('Hello world!');
         return $response;
@@ -111,4 +71,44 @@ return function (App $app) {
     // get messages from the group
     $app->get('/messages/{group_id}', MessageController::class . ':getMessages')->add($tokenMiddleware);
 
+
+
+    $app->group('/docs', function (RouteCollectorProxy $group) {
+
+        $group->get('[/]', function (Request $request, Response $response) {
+            $swaggerUiContent = file_get_contents(__DIR__ . '/swagger/dist/index.html');
+            $response->getBody()->write($swaggerUiContent);
+            return $response;
+        });
+
+        $group->get('/swagger-ui.css', function (Request $request, Response $response) {
+            $content = file_get_contents(__DIR__ . '/swagger/dist/swagger-ui.css');
+            $response->getBody()->write($content);
+            return $response->withHeader('Content-Type', 'text/css');
+        });
+
+        $group->get('/index.css', function (Request $request, Response $response) {
+            $content = file_get_contents(__DIR__ . '/swagger/dist/index.css');
+            $response->getBody()->write($content);
+            return $response->withHeader('Content-Type', 'text/css');
+        });
+
+        $group->get('/swagger-ui-bundle.js', function (Request $request, Response $response) {
+            $content = file_get_contents(__DIR__ . '/swagger/dist/swagger-ui-bundle.js');
+            $response->getBody()->write($content);
+            return $response->withHeader('Content-Type', 'application/javascript');
+        });
+
+        $group->get('/swagger-ui-standalone-preset.js', function (Request $request, Response $response) {
+            $content = file_get_contents(__DIR__ . '/swagger/dist/swagger-ui-standalone-preset.js');
+            $response->getBody()->write($content);
+            return $response->withHeader('Content-Type', 'application/javascript');
+        });
+
+        $group->get('/swagger-initializer.js', function (Request $request, Response $response) {
+            $content = file_get_contents(__DIR__ . '/swagger/dist/swagger-initializer.js');
+            $response->getBody()->write($content);
+            return $response->withHeader('Content-Type', 'application/javascript');
+        });
+    });
 };
